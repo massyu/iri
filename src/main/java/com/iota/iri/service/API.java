@@ -199,7 +199,7 @@ public class API {
         
         
         /* 追加箇所 */
-        //commandRoute.put(ApiCommand.DELETE_TRANSACTION, deleteTransaction());
+        commandRoute.put(ApiCommand.DELETE_TRANSACTION, deleteTransaction());
         }
 
     /**
@@ -388,7 +388,6 @@ public class API {
                 return ErrorResponse.create("Invalid transaction, not a tail: " + transaction);
             }
 
-            //変更箇所
             if (!txVM.isSolid()) {
                 state = false;
                 info = "tails are not solid (missing a referenced tx): " + transaction;
@@ -1545,7 +1544,6 @@ public class API {
     //
 
     // 追加箇所
-    /*
     private Function<Map<String, Object>, AbstractResponse> deleteTransaction() {
         log.info("API変更テスト");
         return request -> {
@@ -1556,7 +1554,6 @@ public class API {
             }
         };
     }
-    */
 
     private Function<Map<String, Object>, AbstractResponse> addNeighbors() {
         return request -> {

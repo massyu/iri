@@ -10,7 +10,7 @@ public enum ApiCommand {
     /**
      * 追加箇所
      */
-    //DELETE_TRANSACTION("deleteTransaction"),
+    DELETE_TRANSACTION("deleteTransaction"),
     
     /**
      * Add a temporary neighbor to this node
