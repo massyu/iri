@@ -717,7 +717,7 @@ public class API {
     private AbstractResponse getNodeInfoStatement() throws Exception{
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
-        log.info("APItest")
+        log.info("APItest");
         
         return GetNodeInfoResponse.create(
                 name,
