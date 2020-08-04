@@ -721,7 +721,6 @@ public class API {
         
         return GetNodeInfoResponse.create(
                 test,
-                name,
                 IotaUtils.getIriVersion(),
                 Runtime.getRuntime().availableProcessors(),
                 Runtime.getRuntime().freeMemory(),
