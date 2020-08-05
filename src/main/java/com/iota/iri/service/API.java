@@ -746,6 +746,39 @@ public class API {
                 configuration.getCoordinator().toString());
     }
 
+    @Document(name="deleteTransaction")
+    private AbstractResponse deleteTransactionStatement() throws Exception{
+        String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
+        MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
+        String test = "APItest";
+        
+        return GetNodeInfoResponse.create(
+                test,
+                IotaUtils.getIriVersion(),
+                Runtime.getRuntime().availableProcessors(),
+                Runtime.getRuntime().freeMemory(),
+                System.getProperty("java.version"),
+
+                Runtime.getRuntime().maxMemory(),
+                Runtime.getRuntime().totalMemory(),
+                latestMilestoneTracker.getLatestMilestoneHash(),
+                latestMilestoneTracker.getLatestMilestoneIndex(),
+                
+                snapshotProvider.getLatestSnapshot().getHash(),
+                snapshotProvider.getLatestSnapshot().getIndex(),
+                
+                milestone != null ? milestone.index() : -1,
+                snapshotProvider.getLatestSnapshot().getInitialIndex(),
+                
+                neighborRouter.getConnectedNeighbors().size(),
+                txPipeline.getBroadcastStageQueue().size(),
+                System.currentTimeMillis(),
+                tipsViewModel.size(),
+                transactionRequester.numberOfTransactionsToRequest(),
+                features,
+                configuration.getCoordinator().toString());
+    }
+
     /**
      * Returns information about this node configuration.
      *
