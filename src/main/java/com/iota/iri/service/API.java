@@ -717,10 +717,9 @@ public class API {
     private AbstractResponse getNodeInfoStatement() throws Exception{
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
-        String test = "APItest";
         
         return GetNodeInfoResponse.create(
-                test,
+                name,
                 IotaUtils.getIriVersion(),
                 Runtime.getRuntime().availableProcessors(),
                 Runtime.getRuntime().freeMemory(),
@@ -746,37 +745,14 @@ public class API {
                 configuration.getCoordinator().toString());
     }
 
+    //追加箇所
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
-        String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
-        MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
-        String test = "APItest";
-        
-        return GetNodeInfoResponse.create(
-                test,
-                IotaUtils.getIriVersion(),
-                Runtime.getRuntime().availableProcessors(),
-                Runtime.getRuntime().freeMemory(),
-                System.getProperty("java.version"),
-
-                Runtime.getRuntime().maxMemory(),
-                Runtime.getRuntime().totalMemory(),
-                latestMilestoneTracker.getLatestMilestoneHash(),
-                latestMilestoneTracker.getLatestMilestoneIndex(),
-                
-                snapshotProvider.getLatestSnapshot().getHash(),
-                snapshotProvider.getLatestSnapshot().getIndex(),
-                
-                milestone != null ? milestone.index() : -1,
-                snapshotProvider.getLatestSnapshot().getInitialIndex(),
-                
-                neighborRouter.getConnectedNeighbors().size(),
-                txPipeline.getBroadcastStageQueue().size(),
-                System.currentTimeMillis(),
-                tipsViewModel.size(),
-                transactionRequester.numberOfTransactionsToRequest(),
-                features,
-                configuration.getCoordinator().toString());
+    /*　ここにcompassとの通信処理を入れる
+        取り消すTransaction情報を引数として受け取る
+        IRIがどうやってAPIを受け付けているかをまず調べる
+        それをcompassに導入してやり取りを目指す
+    */
     }
 
     /**
@@ -1582,7 +1558,7 @@ public class API {
         log.info("API変更テスト");
         return request -> {
             try {
-                return getNodeInfoStatement();
+                return deleteTransactionStatement();
             } catch (Exception e) {
                 throw new IllegalStateException(e);
             }

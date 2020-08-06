@@ -75,9 +75,11 @@ public interface APIConfig extends Config {
     /**
      * These descriptions are used by JCommander when you enter <code>java iri.jar --help</code> at the command line.
      */
+
+    //変更箇所
     interface Descriptions {
         String PORT = "The port that will be used by the API.";
-        String API_HOST = "The host on which the API will listen to. Set to 0.0.0.0 to accept any host.";
+        String API_HOST = "0.0.0.0";
         String REMOTE_LIMIT_API = "Commands that should be ignored by API.";
         String REMOTE_TRUSTED_API_HOSTS = "Open the API interface to defined hosts. You can specify multiple hosts in a comma separated list \"--remote-trusted-api-hosts 192.168.0.55,10.0.0.10\". You must also provide the \"--remote\" parameter. Warning: \"--remote-limit-api\" will have no effect for these hosts.";
         String REMOTE_AUTH = "A string in the form of <user>:<password>. Used to access the API. You can provide a clear text or an hashed password.";
