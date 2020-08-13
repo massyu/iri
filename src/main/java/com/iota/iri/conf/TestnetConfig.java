@@ -199,7 +199,7 @@ public class TestnetConfig extends BaseIotaConfig {
         String SNAPSHOT_SIG = "/snapshotTestnet.sig";
         int SNAPSHOT_TIME = 1522306500;
         int MWM = 9;
-        int MILESTONE_START_INDEX = 434525;
+        int MILESTONE_START_INDEX = 0; //変更箇所434525
         int PACKET_SIZE = 1653;
         String DB_PATH = "testnetdb";
         String DB_LOG_PATH = "testnetdb.log";
