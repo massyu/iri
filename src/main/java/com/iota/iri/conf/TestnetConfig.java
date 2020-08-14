@@ -186,8 +186,8 @@ public class TestnetConfig extends BaseIotaConfig {
 
     public interface Defaults {
         Hash COORDINATOR_ADDRESS = HashFactory.ADDRESS.create(
-                "EQQFCZBIHRHWPXKMTOLMYUYPCN9XLMJPYZVFJSAY9FQHCCLWTOLLUGKKMXYFDBOOYFBLBI9WUEILGECYM");
-        boolean DONT_VALIDATE_TESTNET_MILESTONE_SIG = false;
+                "DBMCDLKBRE9REFPMDXTHZDNYCFPICIQJYDVJRKL9VACKISVOHN9MCSKHTQXWDWARXXPAHKOWFTUFEHGJL"); //変更箇所EQQFCZBIHRHWPXKMTOLMYUYPCN9XLMJPYZVFJSAY9FQHCCLWTOLLUGKKMXYFDBOOYFBLBI9WUEILGECYM
+        boolean DONT_VALIDATE_TESTNET_MILESTONE_SIG = true; //変更箇所 false
         int COORDINATOR_SECURITY_LEVEL = 1;
         SpongeFactory.Mode COORDINATOR_SIGNATURE_MODE = SpongeFactory.Mode.CURLP27;
         int KEYS_IN_MILESTONE = 22;
@@ -199,7 +199,7 @@ public class TestnetConfig extends BaseIotaConfig {
         String SNAPSHOT_SIG = "/snapshotTestnet.sig";
         int SNAPSHOT_TIME = 1522306500;
         int MWM = 9;
-        int MILESTONE_START_INDEX = 0; //変更箇所434525
+        int MILESTONE_START_INDEX = 1; //変更箇所434525
         int PACKET_SIZE = 1653;
         String DB_PATH = "testnetdb";
         String DB_LOG_PATH = "testnetdb.log";
