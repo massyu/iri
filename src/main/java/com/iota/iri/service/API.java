@@ -733,7 +733,7 @@ public class API {
                 snapshotProvider.getLatestSnapshot().getHash(),
                 snapshotProvider.getLatestSnapshot().getIndex(),
                 
-                milestone != null ? milestone.index() : -1,
+                milestone != null ? milestone.index() : -1, // 知見：-1なのは自然
                 snapshotProvider.getLatestSnapshot().getInitialIndex(),
                 
                 neighborRouter.getConnectedNeighbors().size(),
@@ -753,6 +753,34 @@ public class API {
         IRIがどうやってAPIを受け付けているかをまず調べる
         それをcompassに導入してやり取りを目指す
     */
+        try{
+        //送信アドレスとポートを指定
+        SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.1.72", 10007));
+        //SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.11.21", 10007));//別PC間で通信したい場合IPやドメイン指定
+        
+        //送信バッファデータを構築(今回はint型をテストするので最低4バイトを確保)
+        ByteBuffer bb = ByteBuffer.allocate(4);
+        
+        //操作説明
+        System.out.println("送信する数値を入力してEnterで送信します。");
+        
+        //数値を入力させる(オーバーフローなどは考慮していない)
+        bb.putInt(new Scanner(System.in).nextInt());
+        
+        //送信準備を行う
+        bb.flip();
+        
+        //送信処理
+        channel.write(bb);
+        
+        //切断
+        channel.close();
+        
+        //送信データを表示します
+        System.out.println("送信:"+bb.getInt(0));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
         
