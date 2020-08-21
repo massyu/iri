@@ -779,14 +779,14 @@ public class API {
 			BufferedReader sok_br = new BufferedReader(sok_isr);
 
 			while(true){
-				log("送信文字列>>");
+				log.info("送信文字列>>");
 				String send = br.readLine();	//キー1行入力
 				os.write(send.getBytes());//送信
 				os.write(crlf);
 				os.write(crlf);
 				
 				String receive = sok_br.readLine();//受信データ取得
-				log("受信『" + receive + "』");
+				log.info("受信『" + receive + "』");
 			}
 		}
 		catch(Exception e){
