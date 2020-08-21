@@ -47,6 +47,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+//変更箇所
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.util.Scanner;
+
 /**
  * <p>
  * The API makes it possible to interact with the node by requesting information or actions to be taken.
