@@ -769,8 +769,7 @@ public class API {
         Socket socket;//ソケット
 
 		try {
-			String IPAddress = "192.168.1.72";
-			socket = new Socket( IPAddress ,  14270); //接続
+			socket = new Socket( "192.168.1.72" ,  14270); //接続
 
 			OutputStream os = socket.getOutputStream();
 			
