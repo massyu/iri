@@ -53,6 +53,8 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
+import java.io.*;	//InputStreamReaderやBufferedReaderを使えるようにする宣言
+import java.net.*;		//InetAddressやSoket利用のため
 
 /**
  * <p>
@@ -760,11 +762,41 @@ public class API {
     */
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
+        InputStreamReader is = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(is);
+        byte crlf [] = {13,10};//キャリッジリターン(CR),改行(LF)の並び で、送信時の区切り用
 
-        log.info("動いてる1");
+        Socket socket;//ソケット
+
+		try {
+			String IPAddress = "192.168.1.72";
+			socket = new Socket( IPAddress ,  14270); //接続
+
+			OutputStream os = socket.getOutputStream();
+			
+			InputStream sok_in = socket.getInputStream();
+			InputStreamReader sok_isr = new InputStreamReader(sok_in);
+			BufferedReader sok_br = new BufferedReader(sok_isr);
+
+			while(true){
+				log("送信文字列>>");
+				String send = br.readLine();	//キー1行入力
+				os.write(send.getBytes());//送信
+				os.write(crlf);
+				os.write(crlf);
+				
+				String receive = sok_br.readLine();//受信データ取得
+				log("受信『" + receive + "』");
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+		}
+		System.out.print("  Enterキーで終了");
+		try{System.in.read();}catch(Exception e){}
+        /*
         try{
-        log.info("動いてる2");
-
+            
         //送信アドレスとポートを指定
         SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.1.72", 10007));
         //SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.11.21", 10007));//別PC間で通信したい場合IPやドメイン指定
@@ -792,7 +824,6 @@ public class API {
 
         log.info("動いてる6");
 
-        
         //切断
         channel.close();
         
@@ -800,7 +831,8 @@ public class API {
         System.out.println("送信:"+bb.getInt(0));
 		}catch(IOException e){
 			e.printStackTrace();
-		}
+        }
+        */
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
         
