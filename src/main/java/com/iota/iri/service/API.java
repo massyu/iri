@@ -141,6 +141,17 @@ public class API {
 
     private final ExecutorService tipSelExecService = Executors.newSingleThreadExecutor(r -> new Thread(r, "tip-selection"));
 
+    //変更箇所
+    private InputStreamReader is = new InputStreamReader(System.in);
+    private BufferedReader br = new BufferedReader(is);
+    private byte crlf [] = {13,10};//キャリッジリターン(CR),改行(LF)の並び で、送信時の区切り用
+    private InputStream sok_in;
+    private InputStreamReader sok_isr;
+    private BufferedReader sok_br;
+    private Socket socket;
+    private OutputStream os;
+
+
     /**
      * Starts loading the IOTA API, parameters do not have to be initialized.
      * 
@@ -762,20 +773,15 @@ public class API {
     */
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
-        InputStreamReader is = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(is);
-        byte crlf [] = {13,10};//キャリッジリターン(CR),改行(LF)の並び で、送信時の区切り用
-
-        Socket socket;//ソケット
 
 		try {
 			socket = new Socket( "192.168.1.72" ,  14270); //接続
 
 			OutputStream os = socket.getOutputStream();
 			
-			InputStream sok_in = socket.getInputStream();
-			InputStreamReader sok_isr = new InputStreamReader(sok_in);
-			BufferedReader sok_br = new BufferedReader(sok_isr);
+			sok_in = socket.getInputStream();
+			sok_isr = new InputStreamReader(sok_in);
+			sok_br = new BufferedReader(sok_isr);
 
 			while(true){
 				log.info("送信文字列>>");
