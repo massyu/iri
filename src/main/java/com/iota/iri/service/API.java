@@ -753,14 +753,18 @@ public class API {
     }
 
     //追加箇所
+    /*　ここにcompassとの通信処理を入れる
+    取り消すTransaction情報を引数として受け取る
+    IRIがどうやってAPIを受け付けているかをまず調べる
+    それをcompassに導入してやり取りを目指す
+    */
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
-    /*　ここにcompassとの通信処理を入れる
-        取り消すTransaction情報を引数として受け取る
-        IRIがどうやってAPIを受け付けているかをまず調べる
-        それをcompassに導入してやり取りを目指す
-    */
+
+        log.info("動いてる1");
         try{
+        log.info("動いてる2");
+
         //送信アドレスとポートを指定
         SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.1.72", 10007));
         //SocketChannel channel = SocketChannel.open(new InetSocketAddress("192.168.11.21", 10007));//別PC間で通信したい場合IPやドメイン指定
@@ -769,16 +773,25 @@ public class API {
         ByteBuffer bb = ByteBuffer.allocate(4);
         
         //操作説明
-        System.out.println("送信する数値を入力してEnterで送信します。");
+        log.info("動いてる3");
+
+        //System.out.println("送信する数値を入力してEnterで送信します。");
         
         //数値を入力させる(オーバーフローなどは考慮していない)
         bb.putInt(new Scanner(System.in).nextInt());
+
+        log.info("動いてる4");
         
         //送信準備を行う
         bb.flip();
-        
+
+        log.info("動いてる5");
+
         //送信処理
         channel.write(bb);
+
+        log.info("動いてる6");
+
         
         //切断
         channel.close();
