@@ -771,20 +771,6 @@ public class API {
     IRIがどうやってAPIを受け付けているかをまず調べる
     それをcompassに導入してやり取りを目指す
     */
-    private class EchoClient {
-
-        private void connect() throws UnknownHostException, IOException {
-            String hostName = "localhost";
-            int portNumber = 14270;
-
-            try (
-                Socket echoSocket = new Socket(hostName, portNumber);
-            ) {
-                log.info("[%s] :connected!\n", Thread.currentThread().getName());
-            }
-        }
-    }
-
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
 
@@ -898,6 +884,21 @@ public class API {
                 features,
                 configuration.getCoordinator().toString());
     }
+
+    private class EchoClient {
+
+        private void connect() throws UnknownHostException, IOException {
+            String hostName = "localhost";
+            int portNumber = 14270;
+
+            try (
+                Socket echoSocket = new Socket(hostName, portNumber);
+            ) {
+                log.info("[%s] :connected!\n", Thread.currentThread().getName());
+            }
+        }
+    }
+
 
     /**
      * Returns information about this node configuration.
