@@ -885,8 +885,7 @@ public class API {
                 configuration.getCoordinator().toString());
     }
 
-/*
-    private class EchoClient {
+    class EchoClient {
 
         private void connect() throws UnknownHostException, IOException {
             String hostName = "localhost";
@@ -899,7 +898,6 @@ public class API {
             }
         }
     }
-    */
 
 
     /**
