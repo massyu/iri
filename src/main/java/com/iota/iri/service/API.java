@@ -776,10 +776,9 @@ public class API {
 
         Thread thread = new Thread(() -> {
         try {
-            String hostName = "localhost";
             int portNumber = 14270;
             try (
-                Socket echoSocket = new Socket(hostName, portNumber);
+                Socket echoSocket = new Socket("192.168.1.72", portNumber);
             ) {
                 log.info("[%s] :connected!\n", Thread.currentThread().getName());
             }
