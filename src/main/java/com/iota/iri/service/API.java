@@ -776,7 +776,13 @@ public class API {
 
         Thread thread = new Thread(() -> {
         try {
-            new EchoClient().connect();
+            String hostName = "localhost";
+            int portNumber = 14270;
+            try (
+                Socket echoSocket = new Socket(hostName, portNumber);
+            ) {
+                log.info("[%s] :connected!\n", Thread.currentThread().getName());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -885,7 +891,8 @@ public class API {
                 configuration.getCoordinator().toString());
     }
 
-    class EchoClient {
+/*
+    private class EchoClient {
 
         private void connect() throws UnknownHostException, IOException {
             String hostName = "localhost";
@@ -898,6 +905,7 @@ public class API {
             }
         }
     }
+*/
 
 
     /**
