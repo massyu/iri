@@ -858,11 +858,9 @@ public class API {
 			e.printStackTrace();
         }
         */
-
-        /*
+        
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
-        */
 
         return GetNodeInfoResponse.create(
                 name,
