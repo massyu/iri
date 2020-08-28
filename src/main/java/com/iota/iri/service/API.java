@@ -765,15 +765,40 @@ public class API {
                 configuration.getCoordinator().toString());
     }
 
-    //追加箇所
+    //変更箇所
     /*　ここにcompassとの通信処理を入れる
     取り消すTransaction情報を引数として受け取る
     IRIがどうやってAPIを受け付けているかをまず調べる
     それをcompassに導入してやり取りを目指す
     */
+    private class EchoClient {
+
+        private void connect() throws UnknownHostException, IOException {
+            String hostName = "localhost";
+            int portNumber = 14270;
+
+            try (
+                Socket echoSocket = new Socket(hostName, portNumber);
+            ) {
+                log.info("[%s] :connected!\n", Thread.currentThread().getName());
+            }
+        }
+    }
+
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
 
+        Thread thread = new Thread(() -> {
+        try {
+            new EchoClient().connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        });
+        thread.start();
+
+
+        /*
 		try {
 			socket = new Socket( "192.168.1.72" ,  14270); //接続
 
@@ -799,6 +824,9 @@ public class API {
 		}
 		System.out.print("  Enterキーで終了");
 		try{System.in.read();}catch(Exception e){}
+        */
+
+
         /*
         try{
             
@@ -838,9 +866,12 @@ public class API {
 			e.printStackTrace();
         }
         */
+
+        /*
         String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
         MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
-        
+        */
+
         return GetNodeInfoResponse.create(
                 name,
                 IotaUtils.getIriVersion(),
