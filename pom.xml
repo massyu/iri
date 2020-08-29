@@ -28,7 +28,7 @@
         <!-- Setting the checkstyle.config.location here will make checkstyle use this file in every maven target.
              This variable will be load by checkstyle plugin automatically. It is more global than setting the
              configLocation attribute on every maven goal. -->
-        <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
+        <!-- <checkstyle.config.location>checkstyle.xml</checkstyle.config.location> -->
         
         <md-doclet-group>com.github.iotaledger</md-doclet-group>
         <md-doclet-artifact>java-md-doclet</md-doclet-artifact>
