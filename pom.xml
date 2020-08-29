@@ -339,16 +339,18 @@
             </plugin>
             <!-- This checkstyle goal will only be invoked during the validate goal or by running "mvn validate"
                  manually. It indirectly calls "mvn checkstyle:check" -->
+
+            <!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <!-- <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-version}</version> -->
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-version}</version>
                 <executions>
                     <execution>
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <!-- <configLocation>${checkstyle.config.location}</configLocation> -->
+                            <configLocation>${checkstyle.config.location}</configLocation> 
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
@@ -359,6 +361,8 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
+
             <!-- Use the Enforcer to verify build integrity -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
