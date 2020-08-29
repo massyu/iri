@@ -774,7 +774,6 @@ public class API {
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
 
-        Thread thread = new Thread(() -> {
         try {
             int portNumber = 14270;
             try (
@@ -814,8 +813,6 @@ public class API {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        });
-        thread.start();
 
 
         /*
