@@ -697,18 +697,20 @@
 
             <!-- This checkstyle goal is indirectly called during report generation or by
                  running "mvn checkstyle:checkstyle" manually-->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <!-- <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-version}</version> -->
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-version}</version>
                 <reportSets>
                     <reportSet>
                         <reports>
-                            <!-- <report>checkstyle</report> -->
+                            <report>checkstyle</report>
                         </reports>
                     </reportSet>
                 </reportSets>
             </plugin>
+            -->
 
             <!-- The javadoc for the report can be called by running "mvn site" and will generate the the iota
                  documentation in Markdown format.
