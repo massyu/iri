@@ -782,16 +782,14 @@ public class API {
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
 
-    public static final int ECHO_PORT = 14270;
-    public static final int BUF_SIZE = 1000;
- 
-    public static void main(String[] args) {
+        int ECHO_PORT = 14270;
+        int BUF_SIZE = 1000;
+    
         SocketChannel channel = null;
         ByteBuffer buf = ByteBuffer.allocate(BUF_SIZE);
         Charset charset = Charset.forName("UTF-8");
         try {
-            channel = SocketChannel.open(new InetSocketAddress("192.168.1.72",
-                                                               ECHO_PORT));
+            channel = SocketChannel.open(new InetSocketAddress("192.168.1.72",ECHO_PORT));
             BufferedReader keyin = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("送信：");
             String line = keyin.readLine();
@@ -813,7 +811,6 @@ public class API {
                 } catch (IOException e) {}
             }
         }
-    }
 
 
 /*
