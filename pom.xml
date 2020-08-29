@@ -19,7 +19,7 @@
         <java-version>1.8</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javadoc-version>3.1.0</javadoc-version>
-        <checkstyle-version>3.0.0</checkstyle-version>
+        <!-- <checkstyle-version>3.0.0</checkstyle-version> -->
         <undertow.version>2.0.23.Final</undertow.version>
         <jackson-databind.version>2.9.9.2</jackson-databind.version>
         <zero-allocation-hashing.version>0.8</zero-allocation-hashing.version>
@@ -341,14 +341,14 @@
                  manually. It indirectly calls "mvn checkstyle:check" -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-version}</version>
+                <!-- <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-version}</version> -->
                 <executions>
                     <execution>
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>${checkstyle.config.location}</configLocation>
+                            <!-- <configLocation>${checkstyle.config.location}</configLocation> -->
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
@@ -695,12 +695,12 @@
                  running "mvn checkstyle:checkstyle" manually-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-version}</version>
+                <!-- <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-version}</version> -->
                 <reportSets>
                     <reportSet>
                         <reports>
-                            <report>checkstyle</report>
+                            <!-- <report>checkstyle</report> -->
                         </reports>
                     </reportSet>
                 </reportSets>
