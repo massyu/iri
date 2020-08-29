@@ -780,10 +780,12 @@ public class API {
         ) {
             System.out.printf("[%s] :connected!\n", Thread.currentThread().getName());
 
-            String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
-            MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
+
         }
 
+        String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
+        MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
+        
         return GetNodeInfoResponse.create(
             name,
             IotaUtils.getIriVersion(),
