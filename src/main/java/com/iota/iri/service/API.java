@@ -63,6 +63,7 @@ import java.net.*;		//InetAddressやSoket利用のため
  import java.nio.ByteBuffer;
  import java.nio.CharBuffer;
  import java.nio.channels.SocketChannel;
+ import java.nio.charset.Charset;
 
 /**
  * <p>
@@ -797,7 +798,7 @@ public class API {
             while (channel.isConnected()) {
                 buf.clear();
                 if (channel.read(buf) < 0) {
-                    return;
+                    return null;
                 }
                 buf.flip();
                 System.out.print("受信：" + charset.decode(buf).toString());
