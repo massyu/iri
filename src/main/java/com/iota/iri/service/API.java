@@ -780,7 +780,7 @@ public class API {
             try (
                 Socket echoSocket = new Socket("192.168.1.72", portNumber);
             ) {
-                log.info("[%s] :connected!\n", Thread.currentThread().getName());
+                System.out.printf("[%s] :connected!\n", Thread.currentThread().getName());
 
                 String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
                 MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
