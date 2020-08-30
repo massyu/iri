@@ -794,14 +794,17 @@ public class API {
         try {
             channel = SocketChannel.open(new InetSocketAddress("192.168.1.72",ECHO_PORT));
             BufferedReader keyin = new BufferedReader(new InputStreamReader(System.in));
-            log.info("send:");
+            log.info("send");
             String line = keyin.readLine();
             channel.write(charset.encode(CharBuffer.wrap(line + "\n")));
+            log.info("send2");
             while (channel.isConnected()) {
+                log.info("send3");
                 buf.clear();
                 if (channel.read(buf) < 0) {
                     return null;
                 }
+                log.info("send4");
                 buf.flip();
                 log.info("accept：" + charset.decode(buf).toString());
             }
