@@ -789,11 +789,11 @@ public class API {
         SocketChannel channel = null;
         ByteBuffer buf = ByteBuffer.allocate(BUF_SIZE);
         Charset charset = Charset.forName("UTF-8");
-        System.out.println("test1");
+        log.info("test1");
         try {
             channel = SocketChannel.open(new InetSocketAddress("192.168.1.72",ECHO_PORT));
             BufferedReader keyin = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("send:");
+            log.info("send:");
             String line = keyin.readLine();
             channel.write(charset.encode(CharBuffer.wrap(line + "\n")));
             while (channel.isConnected()) {
@@ -802,15 +802,15 @@ public class API {
                     return null;
                 }
                 buf.flip();
-                System.out.println("accept：" + charset.decode(buf).toString());
+                log.info("accept：" + charset.decode(buf).toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("test2");
+            log.info("test2");
             if (channel != null && channel.isOpen()) {
                 try {
-                    System.out.println("test3");
+                    log.info("test3");
                     channel.close();
                 } catch (IOException e) {}
             }
