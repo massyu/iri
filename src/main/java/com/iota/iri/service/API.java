@@ -782,6 +782,7 @@ public class API {
     */
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
+        log.info("deteleTransaction呼びだされ");
 
         int ECHO_PORT = 14270;
         int BUF_SIZE = 1000;
@@ -1750,6 +1751,7 @@ public class API {
         log.info("API変更テスト");
         return request -> {
             try {
+                log.info("deteleTransaction呼び出し");
                 return deleteTransactionStatement();
             } catch (Exception e) {
                 throw new IllegalStateException(e);
