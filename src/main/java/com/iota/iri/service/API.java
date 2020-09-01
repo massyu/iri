@@ -803,7 +803,6 @@ public class API {
             log.info("send2");
             while (channel.isConnected()) {
                 buf.clear();
-                log.info(channel.read(buf));
                 log.info("send3");
                 if (channel.read(buf) < 0) {
                     log.info("send3.5");
