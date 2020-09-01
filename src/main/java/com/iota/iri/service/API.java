@@ -804,6 +804,7 @@ public class API {
             while (channel.isConnected()) {
                 buf.clear();
                 log.info("send3");
+                /*
                 if (channel.read(buf) < 0) {
                     log.info("send3.5");
                     return GetNodeInfoResponse.create(
@@ -832,6 +833,7 @@ public class API {
                         features,
                         configuration.getCoordinator().toString());
                 }
+                */
                 log.info("send4");
                 buf.flip();
                 log.info("accept：" + charset.decode(buf).toString());
