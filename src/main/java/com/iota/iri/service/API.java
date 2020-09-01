@@ -804,9 +804,10 @@ public class API {
             while (channel.isConnected()) {
                 buf.clear();
                 log.info("send3");
-                /*
+                buf.flip();
+                log.info("accept：" + charset.decode(buf).toString());
                 if (channel.read(buf) < 0) {
-                    log.info("send3.5");
+                    log.info("send4");
                     return GetNodeInfoResponse.create(
                         name,
                         IotaUtils.getIriVersion(),
@@ -833,10 +834,7 @@ public class API {
                         features,
                         configuration.getCoordinator().toString());
                 }
-                */
-                log.info("send4");
-                buf.flip();
-                log.info("accept：" + charset.decode(buf).toString());
+
             }
         } catch (IOException e) {
             e.printStackTrace();
