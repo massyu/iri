@@ -804,7 +804,7 @@ public class API {
             while (channel.isConnected()) {
                 buf.clear();
                 log.info("send3");
-                log.info(channel.read(buf).toString());
+                log.info(String.valueOf(channel.read(buf));
 
                 if (channel.read(buf) < 0) {
                     log.info("send4");
