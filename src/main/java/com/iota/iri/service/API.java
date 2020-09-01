@@ -782,6 +782,9 @@ public class API {
     */
     @Document(name="deleteTransaction")
     private AbstractResponse deleteTransactionStatement() throws Exception{
+        String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
+        MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
+        
         log.info("deteleTransaction呼びだされ");
 
         int ECHO_PORT = 14270;
@@ -799,10 +802,36 @@ public class API {
             channel.write(charset.encode(CharBuffer.wrap(line + "\n")));
             log.info("send2");
             while (channel.isConnected()) {
-                log.info("send3");
                 buf.clear();
+                log.info(channel.read(buf));
+                log.info("send3");
                 if (channel.read(buf) < 0) {
-                    return null;
+                    log.info("send3.5");
+                    return GetNodeInfoResponse.create(
+                        name,
+                        IotaUtils.getIriVersion(),
+                        Runtime.getRuntime().availableProcessors(),
+                        Runtime.getRuntime().freeMemory(),
+                        System.getProperty("java.version"),
+
+                        Runtime.getRuntime().maxMemory(),
+                        Runtime.getRuntime().totalMemory(),
+                        latestMilestoneTracker.getLatestMilestoneHash(),
+                        latestMilestoneTracker.getLatestMilestoneIndex(),
+                        
+                        snapshotProvider.getLatestSnapshot().getHash(),
+                        snapshotProvider.getLatestSnapshot().getIndex(),
+                        
+                        milestone != null ? milestone.index() : -1,
+                        snapshotProvider.getLatestSnapshot().getInitialIndex(),
+                        
+                        neighborRouter.getConnectedNeighbors().size(),
+                        txPipeline.getBroadcastStageQueue().size(),
+                        System.currentTimeMillis(),
+                        tipsViewModel.size(),
+                        transactionRequester.numberOfTransactionsToRequest(),
+                        features,
+                        configuration.getCoordinator().toString());
                 }
                 log.info("send4");
                 buf.flip();
@@ -831,9 +860,6 @@ public class API {
 
         }
 */
-
-        String name = configuration.isTestnet() ? IRI.TESTNET_NAME : IRI.MAINNET_NAME;
-        MilestoneViewModel milestone = MilestoneViewModel.first(tangle);
 
         return GetNodeInfoResponse.create(
             name,
